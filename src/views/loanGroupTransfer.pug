@@ -6,7 +6,7 @@ block content
     if loanGroup.members
         h2 Congratulations! A loan group has been created.
         p The loan group members can begin participating in the program.
-        table(style="width:700px")
+        table(style="width:600px")
             tr
                 td(width:20%) <b>ID</b>
                 td(width:40%) <b>Name</b>
@@ -18,7 +18,7 @@ block content
                     td #{person.id}
                     td #{person.name}            
                     td #{person.wallet.tokens}
-                    td #{person.wallet.tokens *0.1}
+                    td(align='center') #{person.wallet.tokens *0.1}
                    
         input(type='button', value='Transfer >', onclick='postTransfer()')
         
