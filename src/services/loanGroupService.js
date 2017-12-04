@@ -14,13 +14,47 @@ async function find(id) {
   return LoanGroupModel.findOne({ _id: id })
     .populate({
       path: 'members',
-      populate: { path: 'wallet' }
-     });
+      populate: { path: 'wallet' },
+    });
 }
 
 async function findAll() {
   return LoanGroupModel.find().populate('members');
-/*   return new Promise((resolve, reject) => {
+}
+
+/**
+  *  Checks if a person is a member in this loan group
+  *  @param {Person} person
+  *  @return {Boolean}
+  */
+async function isGroupMember(person) {
+  return this.members.has(person);
+}
+
+/**
+  * Each loan group member makes a deposit into the loan group wallet
+  * @param {Person} person
+  * @param {Number} depositAmount
+  */
+async function depositIntoLoanWallet(person, depositAmount) {
+  if (this.isGroupMember(person)) {
+    person.transferToLoanWallet(person, depositAmount, this.wallet);
+  } else {
+    console.log(`${person.name} needs to be a member of the Loan Group in order to make a deposit into the Loan Group Wallet.`);
+  }
+}
+
+
+module.exports = {
+  add,
+  find,
+  findAll,
+};
+
+
+/*
+async function findAll() {
+   return new Promise((resolve, reject) => {
     fs.readFile(dbPath, 'utf8', (err, fileData) => {
       if (err) return reject(err);
 
@@ -41,8 +75,8 @@ async function findAll() {
       const loanGroup = LoanGroupModel.create(tempLoanGroupMembers);
       resolve(loanGroup.members);
     });
-  }); */
-}
+  });
+} */
 
 /* async function saveAll(loanGroup) {
   return new Promise((resolve, reject) => {
@@ -56,9 +90,3 @@ async function findAll() {
     });
   });
 } */
-
-module.exports = {
-  add,
-  find,
-  findAll,
-};

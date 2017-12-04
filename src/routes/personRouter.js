@@ -11,16 +11,16 @@ router.get('/', async (req, res, next) => {
   res.render('personAdd');
 });
 
-/* router.get('/all', async (req, res, next) => {
+router.get('/all', async (req, res, next) => {
   const people = await PersonService.findAll();
-  res.render('person-list', { people });
-}); */
+  res.render('loanGroupSubmit', { people });
+});
 
-/* router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const person = await PersonService.find(req.params.id);
+  res.render('personDetail', { person });
+});
 
-  res.render('person-detail', { person });
-}); */
 
 // @/person
 router.post('/', async (req, res, next) => {
@@ -32,12 +32,11 @@ router.post('/', async (req, res, next) => {
     wallet: wallet.id,
   };
   const person = await PersonService.add(obj);
+  // res.send(person);
 
-  res.send(person);
-
-// TODO: render bottom hlaf of page with values - @ loadGroupSubmit.pug
-  // res.redirect('loan-group-submit');
-  // res.redirect('/person/all');// refresh page
+  // TODO: render bottom hlaf of page with values - @ loadGroupSubmit.pug
+  // refresh page
+  res.redirect('/person/all'); 
 
   // const people = await PersonService.findAll();
   // if (people.length) {

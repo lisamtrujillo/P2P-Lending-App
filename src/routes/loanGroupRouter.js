@@ -6,7 +6,7 @@ const LoanGroupService = require('../services/loanGroupService');
 const PersonService = require('../services/personService');
 const WalletModel = require('../models/walletModel');
 
-// @ loan-group-submit
+// @ loan-group
 router.get('/', async (req, res, next) => {
   const people = await PersonService.findAll();
   // const people = await LoanGroupService.findAll();
@@ -14,15 +14,17 @@ router.get('/', async (req, res, next) => {
 });
 
 // show members of 1 loan group, not multiple loan groups
-router.get('/confirmation/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const loanGroup = await LoanGroupService.find(req.params.id);
   // res.send(loanGroup);
   // converting from Set to Array for front end to render
   // const arrLoanGroupMembers = Array.from(loanGroupMembers);
 
-  res.render('loanGroupConfirm', { loanGroup });
+  res.render('loanGroupTransfer', { loanGroup });
 });
 
+
+// @ loan-group
 router.post('/', async (req, res, next) => {
   const wallet = await WalletModel.create({});// move to service??
   // const people = await PersonService.findAll();
@@ -38,6 +40,20 @@ router.post('/', async (req, res, next) => {
   // res.redirect('confirmation');
   console.log(loanGroup.id);
   res.send(loanGroup);
+});
+
+router.post('/desposit', async (req, res, next) => {
+
+  console.log(req.body.person_id)
+  console.log(req.body.amount)   
+
+  // TODO: actual wallet update and saving here
+
+  res.send("transfer complete")
+
+/*   const loanGroup = await LoanGroupService.find(req.params.id);
+  console.log('transfer');
+  res.send(loanGroup); */
 });
 
 module.exports = router;

@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    h1 P2P Crypto Lending - Start Services    
+
+    if loanGroup.members
+        h2 Congratulations! A loan group has been created.
+        p The loan group members can begin participating in the program.
+        table(style="width:700px")
+            tr
+                td(width:20%) <b>ID</b>
+                td(width:40%) <b>Name</b>
+                td(width:30%) <b>Tokens</b>
+                td(width:10%) <b>Transfer Amount</b>
+
+            each person in loanGroup.members
+                tr
+                    td #{person.id}
+                    td #{person.name}            
+                    td #{person.wallet.tokens}
+                    td #{person.wallet.tokens - 1}
+                   
+        input(type='button', value='Transfer >', onclick='postTransfer()')
+        
+        script.
+            function postTransfer() {    
+                axios.post('/deposit', {
+                    person_id:  id,
+                    amount: 5
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })        
+            }
+                
+
+                    
+    else
+        p There are no people in this application yet. 
+            a(href="/person")
+                button Go to Set Up >

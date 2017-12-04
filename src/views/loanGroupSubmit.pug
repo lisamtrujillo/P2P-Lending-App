@@ -1,22 +1,24 @@
 extends layout
 
 block content
-    h1 Crypto Peer Lending Program Set Up
+    h1 P2P Crypto Lending - Set Up
 
     if people.length
         h2 Current List of Available Participants
         p Go back to add another person to the program, or continue to submit them into a loan group.
-        table(style="width:300px")
+        table(style="width:350px")
             tr
-                td(width:20%) <b>ID</b>
-                td(width:50%) <b>Name</b>
-                td(width:30%) <b>Tokens</b>
+                td(width:30%) <b>ID</b>
+                td(width:37%) <b>Name</b>
+                td(width:33%) <b>Tokens</b>
+             
 
             each person in people
                 tr
                     td #{person.id}
                     td #{person.name}            
                     td #{person.wallet.tokens}
+                   
         p
             a(href="/person") 
                 button < Add a Person
@@ -29,9 +31,9 @@ block content
                 button Go to Set Up >
     script.
         function postPeople( people ) {           
-            axios.post('/loan-group-submit', people ).then( res => 
+            axios.post('/loan-group', people ).then( res => 
            // console.log(res.data._id);
-            window.location = '/loan-group-submit/confirmation/'+res.data._id
+            window.location = '/loan-group/'+res.data._id
             )
         }
 
