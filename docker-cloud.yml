@@ -2,7 +2,6 @@ app:
   autoredeploy: true
   environment:
     - 'DB_URL=mongodb://mongodb/p2p-lending'
-    - VIRTUAL_HOST=app.lisa-digital.com
   image: 'lisatrujillo/p2p-lending:latest'
   ports:
     - '3000'
