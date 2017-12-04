@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1 Crypto Peer Lending Program Set Up
+    p Add a person to the program.
+
+    form(action="/person", method='POST')
+    
+        label(for='person_name') Enter a name below.
+        br
+        input( type='text', name='person_name', required placeholder="Sample Name")
+        br
+        br
+        label(for='person_wallet_tokens') Enter the person's current digital wallet balance (in tokens).
+        br
+        input(type='number', name='person_wallet_tokens', required placeholder="0" min="0")
+        br
+        br
+        input(type='submit', value='Submit')
+    

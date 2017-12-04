@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    h1 Crypto Peer Lending Program Set Up
+
+    if people.length
+        h2 Current List of Available Participants
+        p Go back to add another person to the program, or continue to submit them into a loan group.
+        table(style="width:300px")
+            tr
+                td(width:20%) <b>ID</b>
+                td(width:50%) <b>Name</b>
+                td(width:30%) <b>Tokens</b>
+
+            each person in people
+                tr
+                    td #{person.id}
+                    td #{person.name}            
+                    td #{person.wallet.tokens}
+        p
+            a(href="/person") 
+                button < Add a Person
+            nbsp
+            nbsp      
+            input(type='button', value='Submit to Loan Group >', onclick='postPeople(' + JSON.stringify( people ) + ' )')
+    else
+        p There are no people in this program yet. 
+            a(href="/person")
+                button Go to Set Up >
+    script.
+        function postPeople( people ) {           
+            axios.post('/loan-group-submit', people ).then( res => 
+           // console.log(res.data._id);
+            window.location = '/loan-group-submit/confirmation/'+res.data._id
+            )
+        }
+

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1 Crypto Peer Lending Program Set Up    
+
+    if loanGroup.members
+        h2 Congratulations! The following participants have been added to a Loan Group.
+        p A message will be sent to them explaining how they can start contributing and benefiting from this peer lending Loan Group.
+        table(style="width:300px")
+            tr
+                td(width:20%) <b>ID</b>
+                td(width:50%) <b>Name</b>
+                td(width:30%) <b>Tokens</b>
+
+            each person in loanGroup.members
+                tr
+                    td #{person.id}
+                    td #{person.name}            
+                    td #{person.wallet.tokens}
+    else
+        p There are no people in this application yet. 
+            a(href="/person")
+                button Go to Set Up >

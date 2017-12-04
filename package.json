@@ -1,0 +1,28 @@
+{
+  "name": "P2P-Lending",
+  "version": "1.0.0",
+  "description": "Peer to Peer Lending App - Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisamtrujillo/P2P-Lending-App.git"
+  },
+  "author": "Lisa Trujillo <lisamtrujillo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.1",
+    "mongoose-sequence": "^4.0.1",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0"
+  }
+}
