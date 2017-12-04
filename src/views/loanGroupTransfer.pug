@@ -18,24 +18,15 @@ block content
                     td #{person.id}
                     td #{person.name}            
                     td #{person.wallet.tokens}
-                    td #{person.wallet.tokens - 1}
+                    td #{person.wallet.tokens *0.1}
                    
         input(type='button', value='Transfer >', onclick='postTransfer()')
         
         script.
-            function postTransfer() {    
-                axios.post('/deposit', {
-                    person_id:  id,
-                    amount: 5
-                })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })        
+            function postTransfer() {     
+                window.location = '/loan-group/deposit';
             }
-                
+                              
 
                     
     else

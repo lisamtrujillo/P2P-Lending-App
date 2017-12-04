@@ -42,15 +42,14 @@ router.post('/', async (req, res, next) => {
   res.send(loanGroup);
 });
 
-router.post('/desposit', async (req, res, next) => {
-
-  console.log(req.body.person_id)
-  console.log(req.body.amount)   
+router.get('/desposit', async (req, res, next) => {
+  console.log("transfer complete")
+  /* console.log(req.body.person_id)
+  console.log(req.body.amount)   */ 
 
   // TODO: actual wallet update and saving here
 
   res.send("transfer complete")
-
 /*   const loanGroup = await LoanGroupService.find(req.params.id);
   console.log('transfer');
   res.send(loanGroup); */
